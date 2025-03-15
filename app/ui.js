@@ -251,8 +251,12 @@ const UI = {
     },
 
     addTouchSpecificHandlers() {
-        document.getElementById("noVNC_keyboard_button")
-            .addEventListener('click', UI.toggleVirtualKeyboard);
+        if (document.getElementById("noVNC_keyboard_button")) {
+            document.getElementById("noVNC_keyboard_button")
+                .addEventListener('click', UI.toggleVirtualKeyboard);
+        } else {
+            Log.Error("Element noVNC_keyboard_button not found");
+        }
 
         UI.touchKeyboard = new Keyboard(document.getElementById('noVNC_keyboardinput'));
         UI.touchKeyboard.onkeyevent = UI.keyEvent;
